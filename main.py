@@ -1,5 +1,5 @@
 #main.py
-from fastapi import FastAPI , Request
+from fastapi import FastAPI , Request, status
 import requests
 import json
 import  os
@@ -18,7 +18,7 @@ with open("ejemplo1.txt", "w") as archivo:
 
 estatus = "Recibido"
 
-@app.post("/test/bpo")
+@app.post("/test/bpo", status_code=status.HTTP_202_ACCEPTED)
 async def get_json_raw(request: Request):
     # 1. Leer el stream de bytes
     raw_body = await request.body()
@@ -31,7 +31,7 @@ async def get_json_raw(request: Request):
         #with open("bpo_payloads/ejemplo12.json", "w", encoding="utf-8") as f:
         with open(archivo, "w", encoding="utf-8") as f:
              json.dump(data, f, indent=4, ensure_ascii=False)
-        return {"Solicitud recibida y completada": fecha_str}
+        return {"Solicitud aceptada e información recibida, muchas gracias BPO.": fecha_str}
     except Exception:
         return {"error": "Formato inválido"}, 400
      
