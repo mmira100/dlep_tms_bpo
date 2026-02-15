@@ -21,8 +21,8 @@ archivo_ruta = ruta_base / "config.json"
 with open(archivo_ruta, 'r') as f:
     data = json.load(f) # Lee y convierte a diccionario en un solo paso
     url_token_tms   = data["items"][0]["url_token_tms"]
-    cliente_id      = data["items"][0]["cliente_id"]
-    cliente_secret  = data["items"][0]["cliente_secret"]
+    c_id            = data["items"][0]["c_id"]
+    c_sec           = data["items"][0]["c_sec"]
     scope           = data["items"][0]["scope"]
 
 #Arma la url del TMS BY token
