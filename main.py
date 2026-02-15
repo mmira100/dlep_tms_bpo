@@ -21,8 +21,8 @@ archivo_ruta = ruta_base / "config.json"
 with open(archivo_ruta, 'r') as f:
     data = json.load(f) # Lee y convierte a diccionario en un solo paso
     url_token_tms   = data["items"][0]["url_token_tms"]
-    cliente_id      = data["items"][0]["client_id"]
-    cliente_secret  = data["items"][0]["client_secret"]
+    cliente_id      = data["items"][0]["cliente_id"]
+    cliente_secret  = data["items"][0]["cliente_secret"]
     scope           = data["items"][0]["scope"]
 
 #Arma la url del TMS BY token
@@ -32,7 +32,7 @@ payload = {
     'grant_type': 'client_credentials',
     'client_id': 'addf3efe-1124-443c-aa9d-cb57e8f841a4',
     'client_secret': 'Jh~8Q~szegYVOjEiTIw1oK-pc2cjv3MjB_L6HaS~',
-     'scope': 'https://blueyonderus.onmicrosoft.com/69adb04d-658f-4b86-a659-67fe0f23bd1f/.default'
+    'scope': 'https://blueyonderus.onmicrosoft.com/69adb04d-658f-4b86-a659-67fe0f23bd1f/.default'
 }
 
 
