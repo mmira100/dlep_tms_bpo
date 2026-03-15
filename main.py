@@ -1,5 +1,6 @@
 #main.py
 from fastapi import FastAPI , Request, status
+from fastapi.responses import JSONResponse
 import requests
 import json
 import  os
@@ -46,11 +47,11 @@ estatus = "Recibido"
 @app.post("/test/bpo", status_code=status.HTTP_202_ACCEPTED)
 async def get_json_raw(request: Request):
     #Consumir la API externa TMS BY token usando requests    
-    response = requests.post(url, data=payload, headers=headers)
+    #response = requests.post(url, data=payload, headers=headers)
     #Procesar y obtener el token de TMS BY
-    if response.status_code == 200:
-        token_data = response.json()
-        access_token = token_data.get('access_token')
+    #if response.status_code == 200:
+     #   token_data = response.json()
+      #  access_token = token_data.get('access_token')
     
     # 1. Leer el stream de bytes
     raw_body = await request.body()
@@ -63,7 +64,12 @@ async def get_json_raw(request: Request):
         #with open("bpo_payloads/ejemplo12.json", "w", encoding="utf-8") as f:
         with open(archivo, "w", encoding="utf-8") as f:
              json.dump(data, f, indent=4, ensure_ascii=False)
-        return {"Solicitud aceptada e información recibida, muchas gracias BPO.": fecha_str}
+        resultado = {"Solicitud aceptada e información recibida, muchas gracias BPO.": fecha_str}
+        return JSONResponse(
+           status_code=200   , 
+           content=resultado
+            )
+    
         #return {access_token }
     except Exception:
         return {"error": "Formato inválido"}, 400
