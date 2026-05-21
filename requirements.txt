@@ -2,3 +2,9 @@ fastapi
 uvicorn
 pydantic
 requests
+exchangelib
+pandas
+python-dotenv
+openpyxl 
+pytz
+shared
